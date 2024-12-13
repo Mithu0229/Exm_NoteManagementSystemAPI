@@ -1,0 +1,21 @@
+.signup-container {
+    max-width: 600px;
+    margin: 30px auto;
+  }
+  
+  mat-card {
+    margin-bottom: 20px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  button {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .error-message {
+    color: red;
+  }

@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <span (click)="home()">Notes App</span>
+  <span class="example-spacer"></span>
+
+  <!-- Show login/signup buttons if not authenticated -->
+  <ng-container *ngIf="!isAuthenticated()">
+    <button mat-button routerLink="/login">Login</button>
+    <button mat-button routerLink="/signup">Signup</button>
+  </ng-container>
+
+  <!-- Show username and logout button if authenticated -->
+  <ng-container *ngIf="isAuthenticated()">
+    <span class="username"> {{ loggedInUser }}</span>
+    <button mat-stroked-button class="logout-btn" (click)="logout()"><mat-icon>exit_to_app</mat-icon>Logout</button>
+  </ng-container>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

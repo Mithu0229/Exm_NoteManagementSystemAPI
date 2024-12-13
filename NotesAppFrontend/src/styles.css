@@ -1,0 +1,36 @@
+body {
+    font-family: Roboto, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  mat-toolbar {
+    position: sticky;
+    top: 0;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .signup-container,
+  .login-container,
+  .dashboard-container,
+  .create-note-container {
+    max-width: 600px;
+    margin: 30px auto;
+  }
+  
+  mat-card {
+    margin-bottom: 20px;
+  }
+  
+  .note-item {
+    margin-bottom: 10px;
+  }
+  .mat-card {
+    background-color: #424242 !important;  /* !important is optional to ensure it overrides default styles */
+    color: white;  /* Optional: Adjust text color for readability on dark background */
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

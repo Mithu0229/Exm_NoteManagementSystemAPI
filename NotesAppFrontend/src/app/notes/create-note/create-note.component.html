@@ -1,0 +1,64 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Create a New Note</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="noteForm" (ngSubmit)="createNote()">
+      <input formControlName="id" hidden/>
+      <!-- Note Type Selection -->
+      <mat-form-field appearance="fill">
+        <mat-label>Note Type</mat-label>
+        <mat-select formControlName="type" (selectionChange)="onNoteTypeChange()" required>
+          <mat-option *ngFor="let type of noteTypes" [value]="type">
+            {{ type }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Content Field -->
+      <mat-form-field appearance="fill">
+        <mat-label>Content</mat-label>
+        <textarea matInput formControlName="content" rows="3" required></textarea>
+      </mat-form-field>
+
+      <!-- Reminder Date -->
+      <mat-form-field *ngIf="noteForm.value.type === NoteType.Reminder" appearance="fill">
+        <mat-label>Reminder Date</mat-label>
+        <input matInput formControlName="reminderDateTime" type="datetime-local">
+        <mat-icon matSuffix>calendar_today</mat-icon>
+      </mat-form-field>
+
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Date time</mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <input matInput class="time-picker" type="time" id="appt" name="appt" />
+      
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>today</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field> -->
+      <!-- Due Date -->
+      <mat-form-field *ngIf="noteForm.value.type === NoteType.ToDo" appearance="fill">
+        <mat-label>Due Date</mat-label>
+        <input matInput formControlName="dueDateTime" type="datetime-local">
+        <mat-icon matSuffix>calendar_today</mat-icon>
+      </mat-form-field>
+
+      <!-- Bookmark URL -->
+      <mat-form-field *ngIf="noteForm.value.type === NoteType.Bookmark" appearance="fill">
+        <mat-label>Bookmark URL</mat-label>
+        <input matInput formControlName="bookmarkUrl" type="url">
+      </mat-form-field>
+
+      <!-- Submit Button -->
+      <button mat-raised-button color="primary" type="submit" [disabled]="noteForm.invalid">
+        Create Note
+      </button>
+      <button class="mt-4" mat-raised-button color="primary" type="button" (click)="goBack()">
+        Back
+      </button>
+      
+    </form>
+  </mat-card-content>
+</mat-card>

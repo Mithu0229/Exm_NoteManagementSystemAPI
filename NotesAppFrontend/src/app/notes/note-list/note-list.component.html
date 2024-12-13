@@ -1,0 +1,137 @@
+<div class="container">
+  <div class="note-dashboard">
+    <h2>Your Notes</h2>
+    <button mat-fab color="primary" class="create-button" (click)="openCreateNote()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <div class="mt-2">
+      <mat-form-field appearance="fill">
+        <mat-label>Note Type</mat-label>
+        <mat-select formControlName="type" (selectionChange)="onNoteTypeChange($event)" required>
+          <mat-option *ngFor="let type of noteTypes" [value]="type">
+            {{ type }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Filter Notes Based on Date -->
+    <div class="note-filters">
+      <button mat-button class="filter-btn" (click)="filterNotes('all')">
+        <mat-icon>filter_list</mat-icon> All
+      </button>
+      <button mat-button class="filter-btn" (click)="filterNotes('today')">
+        <mat-icon>today</mat-icon> Today
+      </button>
+      <button mat-button class="filter-btn" (click)="filterNotes('week')">
+        <mat-icon>calendar_today</mat-icon> This Week
+      </button>
+      <button mat-button class="filter-btn" (click)="filterNotes('month')">
+        <mat-icon>calendar_month</mat-icon> This Month
+      </button>
+    </div>
+
+    <!-- Regular Notes -->
+    <div *ngFor="let note of filteredNotes">
+      <!-- Regular Note -->
+      <mat-card *ngIf="note.type === NoteType.Regular" class="regular-note">
+        <mat-card-header class="note-header">
+          <div class="header-container">
+            <mat-card-title>
+              <mat-icon class="note-icon">description</mat-icon> {{NoteType.Regular}} - {{ note.content }}
+            </mat-card-title>
+            <button mat-button class="delete-button" (click)="deleteNote(note.id)">
+              <mat-icon>delete</mat-icon> Delete
+            </button>
+          </div>
+        </mat-card-header>
+        <hr />
+        <mat-card-actions class="note-actions">
+          <div class="created-date">Created: {{ note.createdAt | date: 'short' }}</div>
+        </mat-card-actions>
+      </mat-card>
+
+      <!-- Reminder Note -->
+      <mat-card *ngIf="note.type === NoteType.Reminder" class="reminder-note">
+        <mat-card-header class="note-header">
+          <div class="header-container">
+            <mat-card-title>
+              <mat-icon class="note-icon">alarm</mat-icon> {{NoteType.Reminder}} - {{ note.content }}
+            </mat-card-title>
+            <button mat-button class="delete-button" (click)="deleteNote(note.id)">
+              <mat-icon>delete</mat-icon> Delete
+            </button>
+          </div>
+        </mat-card-header>
+        <hr />
+        <mat-card-content class="note-content">
+       
+          <blockquote>
+            <p><strong>Remind me at:</strong> {{ note.reminderDateTime | date: 'short'  }}</p>
+            <p *ngIf="!note.isCompleted"><strong>Time Left:</strong> {{ note.reminderDateTime | timeLeft }}</p>
+          </blockquote>
+        </mat-card-content>
+        <mat-card-actions class="note-actions">
+          <div class="created-date">Created: {{ note.createdAt | date: 'short' }}</div>
+        </mat-card-actions>
+      </mat-card>
+
+      <!-- Todo Note -->
+      <mat-card *ngIf="note.type === NoteType.ToDo" class="todo-note">
+        <mat-card-header class="note-header">
+          <div class="header-container">
+            <mat-card-title>
+              <mat-icon class="note-icon">check_box</mat-icon> {{NoteType.ToDo}} -  {{ note.content }}
+            </mat-card-title>
+            <button mat-button class="delete-button" (click)="deleteNote(note.id)">
+              <mat-icon>delete</mat-icon> Delete
+            </button>
+          </div>
+        </mat-card-header>
+        <hr />
+        <mat-card-content class="note-content">
+          <blockquote>
+            <p *ngIf="!note.isCompleted"><strong>Due Date:</strong> {{ note.dueDateTime | date: 'short' }}</p>
+            <p *ngIf="!note.isCompleted"><strong>Time Left:</strong> {{ note.dueDateTime | timeLeft }}</p>
+            <p *ngIf=" note.isCompleted"><strong >Completed:</strong> {{ note.updatedAt | date : 'short'}}</p>
+            <p><strong>Status:</strong> {{ note.isCompleted ? 'Completed' : 'Pending' }}</p>
+          </blockquote>
+        </mat-card-content>
+        <mat-card-actions class="note-actions">
+          <button *ngIf="!note.isCompleted" mat-button  color="accent" (click)="CompleteTask(note.id)">
+            <mat-icon>check_circle</mat-icon>Click to Complete Task
+          </button>
+          <div class="created-date">Created: {{ note.createdAt | date: 'short' }}</div>
+          <button mat-button *ngIf="!note.isCompleted" class="edit-button" (click)="editNote(note)">
+            update
+          </button>
+        </mat-card-actions>
+      </mat-card>
+
+      <!-- Bookmark Note -->
+      <mat-card *ngIf="note.type === NoteType.Bookmark" class="bookmark-note">
+        <mat-card-header class="note-header">
+          <div class="header-container">
+            <mat-card-title>
+              <mat-icon class="note-icon">bookmark</mat-icon> {{NoteType.Bookmark}} -  {{ note.content }}
+            </mat-card-title>
+            <button mat-button class="delete-button" (click)="deleteNote(note.id)">
+              <mat-icon>delete</mat-icon> Delete
+            </button>
+
+            
+          </div>
+        </mat-card-header>
+        <hr />
+        <mat-card-content class="note-content">
+          <blockquote>
+            <p><strong>URL: </strong> <a href="{{ note.bookmarkUrl }}" target="_blank">{{ note.bookmarkUrl }}</a></p>
+          </blockquote>
+        </mat-card-content>
+        <mat-card-actions class="note-actions">
+          <div class="created-date">Created: {{ note.createdAt | date: 'short' }}</div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

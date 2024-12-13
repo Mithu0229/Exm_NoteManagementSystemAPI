@@ -1,0 +1,153 @@
+/* Style for the note card */
+.regular-note, .reminder-note, .todo-note, .bookmark-note {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.regular-note {
+  background-color: #f5f5f5; /* Light gray background */
+  border-left: 4px solid #3f51b5; /* Blue left border */
+}
+
+.reminder-note {
+  background-color: #fff3e0; /* Light orange background */
+  border-left: 4px solid #ff9800; /* Orange left border */
+}
+
+.todo-note {
+  background-color: #e8f5e9; /* Light green background */
+  border-left: 4px solid #4caf50; /* Green left border */
+}
+
+.bookmark-note {
+  background-color: #e3f2fd; /* Light blue background */
+  border-left: 4px solid #2196f3; /* Blue left border */
+}
+
+/* Styling for the card header */
+.note-header {
+  /* padding: 16px; */
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* Header container that holds the title and delete button */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Title and icon inside the header */
+.note-icon {
+  margin-right: 8px;
+}
+
+/* Delete button inside the header */
+.delete-button {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 4px;
+  color: #f44336;
+  background-color: transparent;
+}
+
+.delete-button:hover {
+  background-color: rgba(244, 67, 54, 0.1);
+}
+
+.delete-button mat-icon {
+  margin-right: 4px;
+}
+
+/* Content section of the card */
+.note-content blockquote {
+  margin: 16px 0;
+  font-style: italic;
+  color: #555;
+}
+
+.note-actions {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.875rem;
+  color: #757575;
+}
+
+.created-date {
+  margin-left: auto; /* Ensures the created date is pushed to the right */
+}
+
+hr {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid #ddd;
+}
+
+/* Filter buttons styling */
+.note-filters {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between buttons */
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  background-color: #f5f5f5;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+  color: #555;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-btn mat-icon {
+  font-size: 20px;
+  color: #555;
+}
+
+.filter-btn:hover {
+  background-color: #4caf50;
+  color: white;
+  transform: scale(1.05);
+}
+
+.filter-btn:active {
+  background-color: #388e3c;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.filter-btn:focus {
+  outline: none;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between; /* Space between title and button */
+  align-items: center; /* Vertically center the items */
+  width: 100%; /* Ensure it takes full width of the container */
+}
+
+.delete-button {
+  margin-left: auto; /* Push the button to the right */
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 4px;
+  color: #f44336;
+  background-color: transparent;
+}
+
+.delete-button:hover {
+  background-color: rgba(244, 67, 54, 0.1);
+}
+
+.delete-button mat-icon {
+  margin-right: 4px;
+}
