@@ -14,11 +14,11 @@ export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   errorMessage: string = '';
   selectedDate: Date | null = null;
-  @ViewChild(MatDatepicker) datepicker?: MatDatepicker<Date>;
+  // @ViewChild(MatDatepicker) datepicker?: MatDatepicker<Date>;
 
-  openDatepicker() {
-    this.datepicker?.open();
-  }
+  // openDatepicker() {
+  //   this.datepicker?.open();
+  // }
 
   constructor(
     private fb: FormBuilder,

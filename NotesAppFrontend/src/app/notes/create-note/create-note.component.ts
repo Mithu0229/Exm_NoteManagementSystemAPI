@@ -132,7 +132,9 @@ export class CreateNoteComponent implements OnInit {
         type: this.noteForm.value.type,
       };
       this.noteService.updateNote(id, noteData).subscribe({
-        next: (response) => {},
+        next: (response) => {
+          this.router.navigate(['/dashboard']);
+        },
         error: (err) => {
           alert('Failed to update note. Please try again.');
         },

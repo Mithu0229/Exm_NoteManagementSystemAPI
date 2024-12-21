@@ -19,12 +19,7 @@ export class AppComponent implements OnInit {
     if (this.authService.isAuthenticated()) {
       this.loggedInUser = this.authService.getUsername();
     }
-//localStorage.getItem('username');//
-    // this.isLoggedIn = !!this.authService.getToken();
 
-    // if (this.isLoggedIn) {
-    //   this.username = this.authService.getUsername();
-    // }
   }
 
   isAuthenticated(): boolean {
@@ -36,7 +31,6 @@ export class AppComponent implements OnInit {
     this.isLoggedIn = false;
     this.loggedInUser = null; // Clear the user data on logout
     this.router.navigate(['/login']);
-    //window.location.reload();
   }
 
   home():void{
